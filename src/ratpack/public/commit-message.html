@@ -1,0 +1,13 @@
+<div class="commit-message">
+
+    <span class="pull-right">{{commit.author.date | date:'MM/dd/yyyy @ h:mma' }}</span>
+
+    <h4 class="commit-message-subject">
+        <a href="{{commit.author.url}}" target="_blank">
+            <img class="avatar" src="{{commit.author.avatar_url}}" alt=""/>
+        </a>
+        <a href="{{commit.html_url}}">{{commit.subject}}</a>
+    </h4>
+
+    <p class="commit-message-body">{{commit.body}}</p>
+</div>

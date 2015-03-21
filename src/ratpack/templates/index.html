@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -35,21 +36,28 @@
             <div class="row">
                 <h1>Ranker</h1>
 
-                <p>Rank {{organization || 'an organization'}}'s public repostiories by audience.</p>
-
+                <p class="lead">Rank {{organization || 'an organization'}}'s public repositories by size of audience.</p>
 
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Organization..." ng-model="orgName"/>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="rankIt(orgName)">Rank It!</button>
-                </span>
+                    <input type="text" class="form-control" placeholder="Type an Organization..." ng-model="orgName"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="rankIt(orgName)">Rank It!</button>
+                    </span>
                 </div>
             </div>
 
-            <div class="row" ng-hide="!repositories">
-                <div class="list-group">
+            <div class="row" ng-show="organization && repositories">
 
-                    <a ng-repeat="repo in repositories" class="list-group-item" ng-class="{ active : repository.name == repo.name }" ng-click="selectRepo(repo)">
+                <h2>{{organization}}'s Repositories</h2>
+
+                <p ng-show="loadingRepositories">
+                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"> </span> Loading...
+                </p>
+
+                <p>Click on a repository to see the most recent commits.</p>
+
+                <div class="list-group">
+                    <a ng-repeat="repo in repositories" class="list-group-item" ng-class="{ active : repository.name == repo.name }" ng-click="selectRepo(organization, repo)">
                         <div class="pull-right">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{repo.watchers}}
                         </div>
@@ -64,14 +72,20 @@
 
         </div>
 
-        <div class="col-sm-8">
-            <h2>{{repository.name}} Most Recent Commits:</h2>
+        <div class="col-sm-7 col-sm-offset-1" ng-show="repository">
+            <h3>Most recent commits to {{repository.name}}</h3>
 
-            {{commits}}
+            <p ng-show="loadingCommits">
+                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"> </span> Loading...
+            </p>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="commit in commits">
+                    <commit commit="commit"/>
+                </li>
+            </ul>
         </div>
     </div>
-
-
 
 </div><!-- /container -->
 
