@@ -2,7 +2,7 @@
 (function( angular ) {
     "use strict";
 
-    angular.module( "rankerizer", [] )
+    angular.module( "rankerizer", [ 'ngSanitize' ] )
 
         .controller( 'HomeController', [
 
@@ -31,7 +31,7 @@
                             $scope.loadingRepositories = false;
                         })
                         .error( function() {
-                            alert( 'There was an error :-(' );
+                            alert( 'There was an error :-(.  Check the spelling of the organization.  If it\'s correct, We may have hit a rate limit' );
                         } )
                 };
 
@@ -39,6 +39,7 @@
                     $scope.repository = repo;
                     $scope.commits = null;
                     $scope.loadingCommits = true;
+                    $scope.commitsPage = 1;
 
                     $http.get( '/api/repos/' + orgName + '/' + repo.name + '/commits' )
                         .success( function( data ) {
@@ -52,7 +53,7 @@
         ])
 
 
-        .directive( 'commit', [ function() {
+        .directive( 'commit', [ '$sce', function( $sce ) {
 
            return {
                restrict: 'E',
@@ -63,13 +64,15 @@
                    if( breakAt > 0 ) {
                        scope.commit.subject = scope.commit.commit.message.substring(0, breakAt );
                        scope.commit.body    = scope.commit.commit.message.substring(breakAt );
+
+                       var msgParts = scope.commit.body.trim().split( "\n" );
+                       console.log( msgParts );
+                       scope.commit.body = "<p>" + msgParts.join( "</p><p>" ) + "</p>";
+
                    } else {
                        scope.commit.subject = scope.commit.commit.message;
-                       scope.commit.message = null;
+                       scope.commit.body = null;
                    }
-
-                   var msgParts = scope.commit.message.split( "\n" );
-                   scope.commit.message = "<p>" + msgParts.join( "</p><p>" ) + "</p>";
 
                },
                scope: {

@@ -9,5 +9,5 @@
         <a href="{{commit.html_url}}">{{commit.subject}}</a>
     </h4>
 
-    <p class="commit-message-body">{{commit.body}}</p>
+    <div class="commit-message-body" ng-bind-html="commit.body"></div>
 </div>

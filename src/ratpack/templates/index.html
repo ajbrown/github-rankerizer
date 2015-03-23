@@ -75,6 +75,7 @@
         <div class="col-sm-7 col-sm-offset-1" ng-show="repository">
             <h3>Most recent commits to {{repository.name}}</h3>
 
+
             <p ng-show="loadingCommits">
                 <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"> </span> Loading...
             </p>
@@ -84,6 +85,7 @@
                     <commit commit="commit"/>
                 </li>
             </ul>
+
         </div>
     </div>
 
@@ -91,6 +93,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="/scripts/app.js"></script>
 
