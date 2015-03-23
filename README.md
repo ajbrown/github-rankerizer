@@ -1,5 +1,7 @@
 GitHub Rankerizer
 -----------------------------
+[![Build
+Status](https://travis-ci.org/ajbrown/github-rankerizer.svg)](https://travis-ci.org/ajbrown/github-rankerizer)
 
 GitHub Rankerizer is a small [Ratpack](http://www.ratpack.io/) and [AngularJS](https://angularjs.org/) application
 which can list an organizations public Github repositories, ranked by audience size.
