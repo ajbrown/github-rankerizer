@@ -34,8 +34,6 @@ dependencies {
     springloaded "org.springframework:springloaded:1.2.2.BUILD-SNAPSHOT"
 
     compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
-    compile ratpack.dependency("config")
-    compile ratpack.dependency("codahale-metrics")
 
     // Default SLF4J binding.  Note that this is a blocking implementation.
     // See here for a non blocking appender http://logging.apache.org/log4j/2.x/manual/async.html
