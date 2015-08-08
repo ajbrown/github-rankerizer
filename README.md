@@ -8,6 +8,8 @@ which can list an organizations public Github repositories, ranked by audience s
 
 Audience is determined by the number of watchers.
 
+A demo of the applicaction can be found here: [https://github-rankerizer.herokuapp.com/](https://github-rankerizer.herokuapp.com/)
+
 
 ### Running Rankerizer
 
