@@ -43,3 +43,7 @@ dependencies {
         exclude module: "groovy-all"
     }
 }
+
+task 'stage' {
+  dependsOn installDist
+}
